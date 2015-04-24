@@ -1,6 +1,6 @@
-/com/
 *.class
-/.settings
+/.settings/
 /.classpath
 /.project
 /.tern-project
+/bin/
