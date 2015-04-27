@@ -18,9 +18,9 @@
 -->
 <!-- AUI Simple FORM -->
 <aui:form name="fm" method="POST" action="<%=updateBookURL.toString()%>">
-	<aui:input name="bookTitle" label="Book Title"/>
-	<aui:input name="author" helpMessage="ok"/>
-	<aui:button  type="submit"  value="Save"/>
+	<aui:input name="bookTitle" label="Book Title" />
+	<aui:input name="author" helpMessage="ok" />
+	<aui:button type="submit" value="Save" />
 </aui:form>
 
 <br />
@@ -28,5 +28,5 @@
 
 <aui:script>
 Liferay.Util.focusFormField(
-document.<portlet:namespace/>fm.<portlet:namespace/>bookTitle);
+document.<portlet:namespace />fm.<portlet:namespace />bookTitle);
 </aui:script>
