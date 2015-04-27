@@ -4,3 +4,4 @@
 </portlet:renderURL>
 <br />
 <a href="<%=updateBookURL%>">Add new Book &raquo;</a>
+
