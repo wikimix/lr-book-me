@@ -18,7 +18,9 @@
 -->
 <!-- AUI Simple FORM -->
 <aui:form name="fm" method="POST" action="<%=updateBookURL.toString()%>">
-	<aui:input name="bookTitle" label="Book Title" />
+	<aui:input name="bookTitle" label="Book Title">
+		<aui:validator name="required" errorMessage="Champs Obligatoire"/>
+	</aui:input>
 	<aui:input name="author" helpMessage="ok" />
 	<aui:button type="submit" value="Save" />
 </aui:form>
