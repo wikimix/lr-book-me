@@ -18,11 +18,15 @@ import com.slayer.service.LMSBookLocalServiceUtil;
  */
 public class LibraryPortlet extends MVCPortlet {
 	public void updateBook(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException,
-	        PortletException {
+
+	PortletException {
 		String bookTitle = ParamUtil.getString(actionRequest, "bookTitle");
 		String author = ParamUtil.getString(actionRequest, "author");
-		System.out.println("Your inputs ==> " + bookTitle + ", " + author);
 
+		insertBook(bookTitle, author);
+	}
+
+	private void insertBook(String bookTitle, String author) {
 		// 1. Instantiate an empty object of type LMSBookImpl
 		LMSBook lmsBook = new LMSBookImpl();
 
