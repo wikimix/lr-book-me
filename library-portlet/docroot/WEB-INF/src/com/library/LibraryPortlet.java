@@ -2,10 +2,11 @@ package com.library;
 
 import java.io.IOException;
 import java.util.Date;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
-import com.liferay.counter.service.CounterLocalServiceUtil;
+
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -30,16 +31,16 @@ public class LibraryPortlet extends MVCPortlet {
 		// 1. Instantiate an empty object of type LMSBookImpl
 		LMSBook lmsBook = new LMSBookImpl();
 
-		// 2. Generate a unique primary key to be set
-		long bookId = 0l;
-		try {
-			bookId = CounterLocalServiceUtil.increment();
-		} catch (SystemException e) {
-			e.printStackTrace();
-		}
+//		// 2. Generate a unique primary key to be set
+//		long bookId = 0l;
+//		try {
+//			bookId = CounterLocalServiceUtil.increment();
+//		} catch (SystemException e) {
+//			e.printStackTrace();
+//		}
 
 		// 3. Set the fields for this object
-		lmsBook.setBookId(bookId);
+//		lmsBook.setBookId(bookId);
 		lmsBook.setBookTitle(bookTitle);
 		lmsBook.setAuthor(author);
 		lmsBook.setCreateDate(new Date());
