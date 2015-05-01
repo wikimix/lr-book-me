@@ -19,8 +19,6 @@
 		<aui:validator name="required" errorMessage="Champs Obligatoire" />
 	</aui:input>
 	<aui:input name="author" helpMessage="ok" />
-	<aui:input name="redirectURL" type="hidden"
-		value="<%=renderResponse.createRenderURL().toString()%>" />
 	<aui:button type="submit" value="Save" />
 </aui:form>
 
