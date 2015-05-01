@@ -1,8 +1,5 @@
 <%@include file="/html/library/init.jsp"%>
 <h1>Add / Edit Form</h1>
-
-
-
 <%
 	PortletURL updateBookURL = renderResponse.createActionURL();
 	updateBookURL.setParameter(ActionRequest.ACTION_NAME, LibraryConstants.ACTION_UPDATE_BOOK);
@@ -19,9 +16,11 @@
 <!-- AUI Simple FORM -->
 <aui:form name="fm" method="POST" action="<%=updateBookURL.toString()%>">
 	<aui:input name="bookTitle" label="Book Title">
-		<aui:validator name="required" errorMessage="Champs Obligatoire"/>
+		<aui:validator name="required" errorMessage="Champs Obligatoire" />
 	</aui:input>
 	<aui:input name="author" helpMessage="ok" />
+	<aui:input name="redirectURL" type="hidden"
+		value="<%=renderResponse.createRenderURL().toString()%>" />
 	<aui:button type="submit" value="Save" />
 </aui:form>
 
