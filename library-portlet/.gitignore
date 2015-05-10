@@ -1,0 +1,21 @@
+#########################
+## For Service Builder###
+#########################
+/docroot/WEB-INF/lib/
+/docroot/WEB-INF/service/
+/docroot/WEB-INF/sql/
+/docroot/WEB-INF/src/service.properties
+/docroot/WEB-INF/src/META-INF/
+/docroot/WEB-INF/src/com/slayer/model/
+/docroot/WEB-INF/src/com/slayer/service/base/
+/docroot/WEB-INF/src/com/slayer/service/persistence/
+
+###########
+##Eclipse##
+###########
+*.class
+/.settings/
+/.classpath
+/.project
+/.tern-project
+/bin/
