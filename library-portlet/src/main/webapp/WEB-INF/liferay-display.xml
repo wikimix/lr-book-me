@@ -3,7 +3,7 @@
 
 <display>
 	
-	<category name="category.sample">
+	<category name="Training">
 		<portlet id="library"></portlet>
 	</category>
 </display>

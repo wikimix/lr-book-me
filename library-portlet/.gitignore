@@ -10,6 +10,22 @@
 /docroot/WEB-INF/src/com/slayer/service/base/
 /docroot/WEB-INF/src/com/slayer/service/persistence/
 
+################################
+## For Service Builder MAVEN ###
+################################
+/src/main/resources
+/src/main/java/com
+/src/main/java/com/slayer
+/src/main/java/com/slayer/model
+/src/main/java/com/slayer/service
+/src/main/java/com/slayer/service/base
+/src/main/java/com/slayer/service/impl
+/src/main/java/com/slayer/service/messaging
+/src/main/java/com/slayer/service/persistence
+
+/src/main/webapp/WEB-INF/sql
+/target
+
 ###########
 ##Eclipse##
 ###########

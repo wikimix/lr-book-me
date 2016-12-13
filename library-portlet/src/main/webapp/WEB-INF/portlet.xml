@@ -4,7 +4,7 @@
 	
 	<portlet>
 		<portlet-name>library</portlet-name>
-		<display-name>Library Portlet</display-name>
+		<display-name>Library</display-name>
 		<portlet-class>com.library.LibraryPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -16,8 +16,8 @@
 			<portlet-mode>view</portlet-mode>
 		</supports>
 		<portlet-info>
-			<title>Library Portlet</title>
-			<short-title>Library Portlet</short-title>
+			<title>Library</title>
+			<short-title>Library</short-title>
 			<keywords></keywords>
 		</portlet-info>
 		<security-role-ref>
