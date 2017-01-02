@@ -4,7 +4,9 @@
 <service-builder package-path="com.slayer" auto-namespace-tables="true">
 	<author>Marouen</author>
 	<namespace>LMS</namespace>
+	
 	<entity name="LMSBook" local-service="true" remote-service="false">
+	
 		<!-- PK fields -->
 		<column name="bookId" type="long" primary="true" id-type="increment"/>
 		<!-- UI fields -->
@@ -12,5 +14,6 @@
 		<column name="author" type="String" />
 		<!-- Audit fields -->
 		<column name="createDate" type="Date" />
+		<reference package-path="com.liferay.portal" entity="Image"/>
 	</entity>
 </service-builder>
