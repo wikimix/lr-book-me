@@ -4,9 +4,12 @@
 <h1>List of books in our Library</h1>
 <%
 	List<LMSBook> books = LMSBookLocalServiceUtil.getLMSBooks(-1, -1);
+
+PortletURL iteratorURL = renderResponse.createRenderURL(); 
+iteratorURL.setParameter("jspPage", LibraryConstants.PAGE_LIST); 
 %>
-<liferay-ui:search-container delta="4"
-	emptyResultsMessage="Sorry. There are no items to display.">
+<liferay-ui:search-container delta="5"
+	emptyResultsMessage="Sorry. There are no items to display." iteratorURL="<%= iteratorURL %>">
 	<liferay-ui:search-container-results total="<%= books.size() %>"
 		results="<%=ListUtil.subList(books, searchContainer.getStart(), searchContainer.getEnd())%>" />
 	<liferay-ui:search-container-row modelVar="book" className="LMSBook">
@@ -17,7 +20,7 @@
 		<liferay-ui:search-container-column-text name="Date Added"
 			property="createDate" />
 	</liferay-ui:search-container-row>
-	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
+	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>"  />
 </liferay-ui:search-container>
 <br />
 <a href="<portlet:renderURL/>">&laquo; Go Back</a>
