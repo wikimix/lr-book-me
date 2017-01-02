@@ -35,17 +35,17 @@ public class LMSBookLocalServiceImpl extends LMSBookLocalServiceBaseImpl {
 		LMSBook lmsBook = new LMSBookImpl();
 
 		// 2. Generate a unique primary key to be set
-		long bookId = 0l;
+		//
+		/*long bookId = 0l;
 		try {
 			bookId = CounterLocalServiceUtil.increment();
 		} catch (SystemException e) {
 			e.printStackTrace();
 		}
-
-		System.out.println(" bookId -->>  " + bookId);
-
+		 */
+		
 		// 3. Set the fields for this object
-		lmsBook.setBookId(bookId);
+		//lmsBook.setBookId(bookId);
 		lmsBook.setBookTitle(bookTitle);
 		lmsBook.setAuthor(author);
 		lmsBook.setCreateDate(new Date());
