@@ -17,8 +17,9 @@ iteratorURL.setParameter("jspPage", LibraryConstants.PAGE_LIST);
 			property="bookTitle" />
 		<liferay-ui:search-container-column-text name="Author"
 			property="author" />
-		<liferay-ui:search-container-column-text name="Date Added"
-			property="createDate" />
+		<liferay-ui:search-container-column-text name="Date Added">
+		<fmt:formatDate value="<%= book.getCreateDate() %>"  pattern="dd/MMM/yyyy" />
+		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
 	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>"  />
 </liferay-ui:search-container>

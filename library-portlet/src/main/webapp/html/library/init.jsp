@@ -7,6 +7,7 @@
 <%@page import="com.slayer.model.LMSBook"%>
 <%@page import="com.slayer.service.LMSBookLocalServiceUtil"%>
 <%@taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
 
 
 <portlet:defineObjects />
