@@ -9,6 +9,9 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
+import org.omg.CORBA.SystemException;
+
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -37,15 +40,28 @@ public class LibraryPortlet extends MVCPortlet {
 					PortletRequest.RENDER_PHASE);
 			successPageURL.setParameter("jspPage", LibraryConstants.PAGE_SUCCESS);
 			actionResponse.sendRedirect(successPageURL.toString());
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	/**
-	 * @param actionRequest
-	 */
-
+	public void deleteBook(ActionRequest actionRequest, ActionResponse actionResponse)
+			throws IOException, PortletException, com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		long bookId = ParamUtil.getLong(actionRequest, "bookId");
+		if (bookId > 0l) { // valid bookId
+			try {
+				LMSBookLocalServiceUtil.deleteLMSBook(bookId);
+			} catch (SystemException e) {
+				e.printStackTrace();
+			} catch (PortalException e) {
+				e.printStackTrace();
+			}
+		}
+		// gracefully redirecting to the list view
+		String redirectURL = ParamUtil.getString(actionRequest, "redirectURL");
+		actionResponse.sendRedirect(redirectURL);
+	}
 }
