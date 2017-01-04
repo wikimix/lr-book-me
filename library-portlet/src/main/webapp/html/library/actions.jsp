@@ -4,7 +4,11 @@
 <%
 	ResultRow row = (ResultRow) request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 	LMSBook book = (LMSBook) row.getObject();
+	//Edit
 	PortletURL editBookURL = renderResponse.createRenderURL();
+	editBookURL.setParameter("bookId", Long.toString(book.getBookId()));
+	editBookURL.setParameter("jspPage", LibraryConstants.PAGE_UPDATE);
+	//View
 	PortletURL viewBookURL = renderResponse.createRenderURL();
 	
 	//Iterator
