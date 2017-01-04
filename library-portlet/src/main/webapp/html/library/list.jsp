@@ -5,16 +5,10 @@
 <%
 	List<LMSBook> books = LMSBookLocalServiceUtil.getLMSBooks(-1, -1);
 
+    //Iterator
 	PortletURL iteratorURL = renderResponse.createRenderURL(); 
 	iteratorURL.setParameter("jspPage", LibraryConstants.PAGE_LIST);
-	
-	//Delete an Entry
-	PortletURL deleteBookURL = renderResponse.createActionURL();  
-	deleteBookURL.setParameter(ActionRequest.ACTION_NAME, LibraryConstants.ACTION_DELETE_BOOK);
-	
-	//we have set a new parameter “redirectURL” to redirect the control back to the list page after performing delete action. 
-	deleteBookURL.setParameter("redirectURL", iteratorURL.toString()); 
-	
+		
 	%>
 <liferay-ui:search-container delta="5"
 	emptyResultsMessage="Sorry. There are no items to display." iteratorURL="<%= iteratorURL %>">
@@ -28,8 +22,6 @@
 		<liferay-ui:search-container-column-text name="Date Added">
 		<fmt:formatDate value="<%= book.getCreateDate() %>"  pattern="dd/MMM/yyyy" />
 		</liferay-ui:search-container-column-text>
-		<% deleteBookURL.setParameter("bookId", Long.toString(book.getBookId())); %>
-		<liferay-ui:search-container-column-text name="Delete"   href="<%= deleteBookURL.toString() %>" value="delete"/>
 		<liferay-ui:search-container-column-jsp name="Actions" path="<%= LibraryConstants.PAGE_ACTIONS %>" />
 	</liferay-ui:search-container-row>
 	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>"  />
