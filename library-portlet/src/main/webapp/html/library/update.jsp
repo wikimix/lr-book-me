@@ -9,6 +9,7 @@
 		lmsBook = LMSBookLocalServiceUtil.fetchLMSBook(bookId);
 	}
 %>
+<aui:input name="bookId" type="hidden" value="<%=lmsBook.getBookId()%>" />
 <br />
 <h1>Add / Edit with AUI</h1>
 
@@ -16,10 +17,12 @@
 	value="<%=renderResponse.createRenderURL().toString()%>" />
 
 <aui:form name="fm" method="POST" action="<%=updateBookURL.toString()%>">
-	<aui:input name="bookTitle" label="Book Title" helpMessage="Book title" value="<%= lmsBook.getBookTitle() %>">
+	<aui:input name="bookTitle" label="Book Title" helpMessage="Book title"
+		value="<%=lmsBook.getBookTitle()%>">
 		<aui:validator name="required" errorMessage="Sorry!" />
 	</aui:input>
-	<aui:input name="author" helpMessage="Author" value="<%= lmsBook.getAuthor() %>">
+	<aui:input name="author" helpMessage="Author"
+		value="<%=lmsBook.getAuthor()%>">
 	</aui:input>
 	<aui:button type="submit" value="Save" />
 </aui:form>
@@ -34,6 +37,8 @@
 			.focusFormField(document.<portlet:namespace/>fm.<portlet:namespace/>bookTitle);
 </aui:script>
 	
+
+
 
 
 

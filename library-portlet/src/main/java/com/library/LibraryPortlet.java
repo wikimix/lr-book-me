@@ -13,10 +13,12 @@ import org.omg.CORBA.SystemException;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.slayer.model.LMSBook;
 import com.slayer.service.LMSBookLocalServiceUtil;
 
 /**
@@ -29,7 +31,14 @@ public class LibraryPortlet extends MVCPortlet {
 
 		String bookTitle = ParamUtil.getString(actionRequest, "bookTitle");
 		String author = ParamUtil.getString(actionRequest, "author");
-		LMSBookLocalServiceUtil.insertBook(bookTitle, author);
+
+		long bookId = ParamUtil.getLong(actionRequest, "bookId");
+		if (bookId > 0l) {
+			modifyBook(bookId, bookTitle, author);
+		} else {
+			LMSBookLocalServiceUtil.insertBook(bookTitle, author);
+		}
+
 		try {
 			// redirect after insert
 			ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
@@ -43,6 +52,25 @@ public class LibraryPortlet extends MVCPortlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+
+	}
+
+	public void modifyBook(long bookId, String bookTitle, String author) {
+		LMSBook lmsBook = null;
+		try {
+			lmsBook = LMSBookLocalServiceUtil.fetchLMSBook(bookId);
+		} catch (SystemException | com.liferay.portal.kernel.exception.SystemException e) {
+			e.printStackTrace();
+		}
+		if (Validator.isNotNull(lmsBook)) {
+			lmsBook.setBookTitle(bookTitle);
+			lmsBook.setAuthor(author);
+			try {
+				LMSBookLocalServiceUtil.updateLMSBook(lmsBook);
+			} catch (SystemException | com.liferay.portal.kernel.exception.SystemException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
