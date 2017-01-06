@@ -47,7 +47,8 @@ public class LibraryPortlet extends MVCPortlet {
 			PortletURL successPageURL = PortletURLFactoryUtil.create(actionRequest,
 					portletName + "_WAR_" + portletName + "portlet", themeDisplay.getPlid(),
 					PortletRequest.RENDER_PHASE);
-			successPageURL.setParameter("jspPage", LibraryConstants.PAGE_SUCCESS);
+			successPageURL.setParameter("jspPage",
+					(bookId > 0l) ? LibraryConstants.PAGE_LIST : LibraryConstants.PAGE_SUCCESS);
 			actionResponse.sendRedirect(successPageURL.toString());
 
 		} catch (Exception e) {
