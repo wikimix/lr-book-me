@@ -34,7 +34,7 @@ public class LibraryPortlet extends MVCPortlet {
 
 		long bookId = ParamUtil.getLong(actionRequest, "bookId");
 		if (bookId > 0l) {
-			modifyBook(bookId, bookTitle, author);
+			LMSBookLocalServiceUtil.modifyBook(bookId, bookTitle, author);
 		} else {
 			LMSBookLocalServiceUtil.insertBook(bookTitle, author);
 		}
