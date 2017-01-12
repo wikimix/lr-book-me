@@ -53,7 +53,6 @@ public class LMSBookLocalServiceImpl extends LMSBookLocalServiceBaseImpl {
 		lmsBook.setBookTitle(bookTitle);
 		lmsBook.setAuthor(author);
 		lmsBook.setCreateDate(new Date());
-
 		// 4. Call the Service Layer API to persist the object
 		try {
 
@@ -75,6 +74,7 @@ public class LMSBookLocalServiceImpl extends LMSBookLocalServiceBaseImpl {
 		if (Validator.isNotNull(lmsBook)) {
 			lmsBook.setBookTitle(bookTitle);
 			lmsBook.setAuthor(author);
+			lmsBook.setModifiedDate(new Date());
 			try {
 				lmsBook = updateLMSBook(lmsBook);
 			} catch (SystemException e) {
