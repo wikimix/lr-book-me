@@ -12,6 +12,7 @@
 	//Book details
 	PortletURL bookDetailsURL = renderResponse.createRenderURL();
 	bookDetailsURL.setParameter("jspPage",LibraryConstants.PAGE_DETAILS);
+	bookDetailsURL.setParameter("backURL", themeDisplay.getURLCurrent());
 		
 	%>
 <liferay-ui:search-container delta="5"
