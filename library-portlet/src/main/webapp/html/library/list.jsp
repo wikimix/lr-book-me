@@ -8,6 +8,10 @@
     //Iterator
 	PortletURL iteratorURL = renderResponse.createRenderURL(); 
 	iteratorURL.setParameter("jspPage", LibraryConstants.PAGE_LIST);
+	
+	//Book details
+	PortletURL bookDetailsURL = renderResponse.createRenderURL();
+	bookDetailsURL.setParameter("jspPage",LibraryConstants.PAGE_DETAILS);
 		
 	%>
 <liferay-ui:search-container delta="5"
@@ -15,8 +19,10 @@
 	<liferay-ui:search-container-results total="<%= books.size() %>"
 		results="<%=ListUtil.subList(books, searchContainer.getStart(), searchContainer.getEnd())%>" />
 	<liferay-ui:search-container-row modelVar="book" className="LMSBook">
+	<% bookDetailsURL.setParameter("bookId",Long.toString(book.getBookId())); %>
 		<liferay-ui:search-container-column-text name="Book Title"
-			property="bookTitle" />
+			property="bookTitle" href="<%= bookDetailsURL.toString() %>">
+		</liferay-ui:search-container-column-text>
 		<liferay-ui:search-container-column-text name="Author"
 			property="author" />
 		<liferay-ui:search-container-column-text name="Date Added">
