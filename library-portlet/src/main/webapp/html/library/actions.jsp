@@ -14,6 +14,7 @@
 	//View with popup implementation
 	viewBookURL.setWindowState(LiferayWindowState.POP_UP);
 	viewBookURL.setParameter("jspPage", LibraryConstants.PAGE_DETAILS);
+	viewBookURL.setParameter("showHeader",Boolean.toString(false));
 
 	//Iterator
 	PortletURL iteratorURL = renderResponse.createRenderURL();
@@ -62,8 +63,7 @@ function popup(viewBookURL) {
 								}
 							}).plug(A.Plugin.IO, {autoLoad : false}).render();
 							popUpWindow.show();
-							popUpWindow.titleNode
-									.html("Liferay 6.2 Dialog Window");
+							popUpWindow.titleNode.html("Book details");
 							popUpWindow.io.set('uri',viewBookURL);
 							popUpWindow.io.start();
 						});
