@@ -9,6 +9,5 @@ public class LibraryConstants {
 	public static final String ACTION_DELETE_BOOK = "deleteBook";
 	public static final String PAGE_ACTIONS = "/html/library/actions.jsp";
 	public static final String PAGE_DETAILS = "/html/library/detail.jsp";
-	
-
-}
+	public static final String ACTION_DELETE_BOOKS = "deleteBooks";
+	}

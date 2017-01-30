@@ -16,8 +16,6 @@
 	if (orderByType.equalsIgnoreCase("desc")) {
 		Collections.reverse(books);
 	}
-	
-
 	//Iterator
 	PortletURL iteratorURL = renderResponse.createRenderURL();
 	iteratorURL.setParameter("jspPage", LibraryConstants.PAGE_LIST);
@@ -27,6 +25,22 @@
 	bookDetailsURL.setParameter("jspPage", LibraryConstants.PAGE_DETAILS);
 	bookDetailsURL.setParameter("backURL", themeDisplay.getURLCurrent());
 %>
+<c:if test="<%=!books.isEmpty()%>">
+	<%
+		String functionName = renderResponse.getNamespace() + "submitFormForAction();";
+	%>
+	<aui:button-row>
+		<aui:button value="delete" cssClass="delete-books-button"
+			onClick="<%= functionName %>" />
+	</aui:button-row>
+</c:if>
+<portlet:actionURL name="<%=LibraryConstants.ACTION_DELETE_BOOKS%>"
+	var="deleteBooksURL">
+	<portlet:param name="redirectURL" value="<%=iteratorURL.toString()%>" />
+</portlet:actionURL>
+<aui:form action="<%=deleteBooksURL.toString()%>">
+	<aui:input name="bookIdsForDelete" type="hidden" />
+
 <liferay-ui:search-container delta="5"
 	emptyResultsMessage="Sorry. There are no items to display."
 	iteratorURL="<%= iteratorURL %>" orderByCol="<%= orderByCol %>"
@@ -51,5 +65,43 @@
 	</liferay-ui:search-container-row>
 	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
 </liferay-ui:search-container>
+</aui:form>
 <br />
 <a href="<portlet:renderURL/>">&laquo; Go Back</a>
+
+<aui:script use="aui-base">
+    var deleteBooksBtn = A.one('.delete-books-button');
+if (deleteBooksBtn != 'undefined') {
+    var toggleDisabled = function (disabled) {
+        //deleteBooksBtn.one(':button').attr('disabled', disabled);
+        deleteBooksBtn.toggleClass('aui-button-disabled', disabled);
+    };
+    var resultsGrid = A.one('.results-grid');
+    if (resultsGrid) {
+        resultsGrid.delegate(
+            'click',
+            function (event) {
+                var disabled = (resultsGrid.one(':checked') == null);
+                toggleDisabled(disabled);
+            },
+            ':checkbox'
+        );
+    }
+    toggleDisabled(true);
+}
+        Liferay.provide(
+            window,'<portlet:namespace/>submitFormForAction',function () {
+            	console.log('you’re inside submitFormForAction');
+                var accepted = confirm('<%= UnicodeLanguageUtil.get(pageContext,"are-you-sure-you-want-to-delete-selected-books") %> ');
+                        if (accepted) {
+                            var frm = document.<portlet:namespace/>fm;
+                            var hiddenField = frm.<portlet:namespace/>bookIdsForDelete;
+                            hiddenField.value =
+                                Liferay.Util.listCheckedExcept(
+                                    frm, "<portlet:namespace/>allRowIds");
+                            submitForm(frm);
+                        }
+                    },
+    		['liferay-util-list-fields']
+            );
+</aui:script>
