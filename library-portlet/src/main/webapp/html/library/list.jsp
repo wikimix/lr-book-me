@@ -2,6 +2,7 @@
 <%@page import="com.liferay.portal.kernel.util.ListUtil"%>
 <%@page import="java.util.Collections"%>
 <%@page import="org.apache.commons.beanutils.BeanComparator"%>
+<%@page import="com.liferay.portal.kernel.dao.search.RowChecker"%>
 
 <h1>List of books in our Library</h1>
 <%
@@ -29,7 +30,8 @@
 <liferay-ui:search-container delta="5"
 	emptyResultsMessage="Sorry. There are no items to display."
 	iteratorURL="<%= iteratorURL %>" orderByCol="<%= orderByCol %>"
-	orderByType="<%= orderByType %>">
+	orderByType="<%= orderByType %>"
+	rowChecker="<%= new RowChecker(renderResponse) %>">
 	<liferay-ui:search-container-results total="<%= books.size() %>"
 		results="<%=ListUtil.subList(books, searchContainer.getStart(), searchContainer.getEnd())%>" />
 	<liferay-ui:search-container-row modelVar="book" className="LMSBook">
