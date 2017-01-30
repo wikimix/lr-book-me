@@ -8,6 +8,8 @@ import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
 import org.omg.CORBA.SystemException;
 
@@ -25,6 +27,21 @@ import com.slayer.service.LMSBookLocalServiceUtil;
  * Portlet implementation class LibraryPortlet
  */
 public class LibraryPortlet extends MVCPortlet {
+	@Override
+	public void render(RenderRequest request, RenderResponse response) throws PortletException, IOException {
+		setSortParams(request);
+		super.render(request, response);
+	}
+
+	private void setSortParams(RenderRequest request) {
+		String jspPage = ParamUtil.getString(request, "jspPage");
+		if (jspPage.equalsIgnoreCase(LibraryConstants.PAGE_LIST)) {
+			String orderByCol = ParamUtil.getString(request, "orderByCol", "bookTitle");
+			request.setAttribute("orderByCol", orderByCol);
+			String orderByType = ParamUtil.getString(request, "orderByType", "asc");
+			request.setAttribute("orderByType", orderByType);
+		}
+	}
 
 	public void updateBook(ActionRequest actionRequest, ActionResponse actionResponse)
 			throws IOException, PortletException {

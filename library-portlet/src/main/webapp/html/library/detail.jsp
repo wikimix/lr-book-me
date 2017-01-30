@@ -7,7 +7,7 @@
 	}
 	String backURL = ParamUtil.getString(request, "backURL");
 	boolean showHeader =
-			ParamUtil.getBoolean(request, "showHeader");
+			ParamUtil.getBoolean(request, "showHeader", false);
 %>
 <c:if test="<%=Validator.isNotNull(lmsBook)%>">
 	<c:if test="<%= showHeader %>">	
